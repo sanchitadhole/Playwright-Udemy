@@ -1,0 +1,3 @@
+----locators in playwright----
+- page.locator() for CSS or XPath as a fallback. 
+1. getByLabel
