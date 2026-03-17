@@ -1,21 +1,30 @@
 // Login UI -> .json
 // test, cart , orders, orders details, orderhistory
 
-
-
 const { test, expect } = require("@playwright/test");
+let webContext;
 
-test
+test.beforeAll(async ({ browser }) => {
+  const context = await browser.newContext();
+  const page = await context.newPage();
 
-test("My first testcase", async ({ page }) => {
-  const productName = "ZARA COAT 3";
-  const email = "SANCHITADHOLE27@GMAIL.COM";
-  const products = page.locator(".card-body");
   await page.goto("https://rahulshettyacademy.com/client/#/auth/login");
-  await page.locator("#userEmail").fill(email);
+  await page.locator("#userEmail").fill("SANCHITADHOLE27@GMAIL.COM");
   await page.locator("#userPassword").fill("Cgain@123");
   await page.locator("#login").click();
   await page.waitForLoadState("networkidle");
+  await context.storageState({ path: "state.json" });
+  webContext = await browser.newContext({ storageState: "state.json" });
+});
+
+test("My first testcase", async () => {
+  const productName = "ZARA COAT 3";
+  const email = "SANCHITADHOLE27@GMAIL.COM";
+  const page = await webContext.newPage();
+    await page.goto("https://rahulshettyacademy.com/client/#/auth/login");
+
+  const products = page.locator(".card-body");
+
   await page.locator(".card-body b").first().waitFor();
   const titles = await page.locator(".card-body b").allTextContents();
   console.log(titles);
@@ -66,3 +75,22 @@ test("My first testcase", async ({ page }) => {
 
   await page.pause();
 });
+
+
+
+
+test("My first testcase 2", async () => {
+  const productName = "ZARA COAT 3";
+  const email = "SANCHITADHOLE27@GMAIL.COM";
+  const page = await webContext.newPage();
+    await page.goto("https://rahulshettyacademy.com/client/#/auth/login");
+
+  const products = page.locator(".card-body");
+
+  await page.locator(".card-body b").first().waitFor();
+  const titles = await page.locator(".card-body b").allTextContents();
+  console.log(titles);
+
+ 
+});
+

@@ -1,5 +1,8 @@
 const { test, expect } = require("@playwright/test");
 
+// test.describe.configure({more:'parallel'});
+// test.describe.configure({mode:"serial"})
+
 test("Popup validations", async ({ page }) => {
   await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
   // await page.goto("https://www.google.com/")
@@ -22,7 +25,40 @@ test("Popup validations", async ({ page }) => {
   await framePage.locator('li a[href="lifetime-access"]:visible').click();
 
   const textCheck = await framePage.locator(".text h2").textContent();
-  console.log(textCheck.split(" ")[1])
-
-
+  console.log(textCheck.split(" ")[1]);
 });
+
+test("@Web Screenshot and visual comparision", async ({ page }) => {
+  await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
+  // await page.goto("https://www.google.com/")
+  // await page.goBack();
+  // await page.goForward();
+
+  await expect(page.locator("#displayed-text")).toBeVisible();
+  await page.locator("#displayed-text").screenshot({path:"partialScreenshot.png"})
+  await page.locator("#hide-textbox").click();
+  await page.screenshot({ path: "screenshot.png" });
+
+  await expect(page.locator("#displayed-text")).toBeHidden();
+});
+
+
+// test.("Visual testing", async ({ page }) => {
+//   await page.goto("https://google.com/");
+
+//   await expect(page).toHaveScreenshot({
+//     maxDiffPixels: 100
+//   });
+// })
+
+
+
+// const { test, expect } = require('@playwright/test');
+
+// test("Visual testing", async ({ page }) => {
+//   await page.goto("https://google.com/");
+
+//   await expect(page).toHaveScreenshot({
+//     maxDiffPixels: 100
+//   });
+// });

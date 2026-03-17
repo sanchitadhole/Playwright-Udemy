@@ -17,7 +17,7 @@ test("Browser context validation in Playwright test ", async ({ page }) => {
   await expect(page.locator("[style*='block']")).toContainText("Incorrect");
 });
 
-test("Browser validation to get all text ", async ({ page }) => {
+test("@Web Browser validation to get all text ", async ({ page }) => {
   const userName = page.locator("#username");
   const passWord = page.locator("#password");
   const signIn = page.locator('input[type="submit"]');

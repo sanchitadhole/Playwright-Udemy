@@ -3,12 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test tests/webAPIPart2.spec.js --headed",
+    "regression": "npx playwright test",
+    "WebTest": "npx playwright test --grep \"@Web\""
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.58.0",
-    "@types/node": "^25.0.10"
+    "@types/node": "^25.0.10",
+    "allure-playwright": "^3.6.0",
+    "typescript": "^5.9.3"
   }
 }

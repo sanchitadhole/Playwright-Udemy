@@ -1,5 +1,5 @@
 const { test, expect, request } = require("@playwright/test");
-const { APiUtils } = require("./utils/APiUtils");
+const { APiUtils } = require("../utils/APiUtils.js")
 
 const loginPayLoad = {
   userEmail: "SANCHITADHOLE27@GMAIL.COM",
@@ -12,7 +12,7 @@ const orderPayLoad = {
 let token;
 let orderId;
 
-// execute only once before all testcase
+// execute  once before all testcase
 let response
 test.beforeAll(async () => {
   // Login API

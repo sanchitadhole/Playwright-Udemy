@@ -5,30 +5,34 @@
  */
 // require('dotenv').config();
 
+// const { retries } = require("./playwright.config1");
+
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
 const config = ({
   testDir: './tests',
+  retries :1,
 
   timeout:40*1000,
   expect:{
     timeout:40*1000
   },
 
-  reporter:'html',
+   reporter: [["line"], ["allure-playwright"]],
+    
  
 
 
   use: {
     browserName:'chromium',
-    headless:false,
+    headless:true,
     screenshot:'on',
     trace:"on"
 
     
    
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    /* Collect trace when retrying the failed test.6 See https://playwright.dev/docs/trace-viewer */
 
   },
 
