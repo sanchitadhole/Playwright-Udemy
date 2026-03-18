@@ -1,0 +1,40 @@
+import {test, expect,Locator,Page} from "@playwright/test"
+export class DashboardPage {
+
+  products:Locator;
+
+productsText:Locator
+cart:Locator
+page:Page
+
+  constructor(page:Page) {
+    this.page = page;
+    this.products = page.locator(".card-body");
+    this.productsText = page.locator(".card-body b");
+    this.cart = page.locator('button[routerlink*="cart"]');
+  }
+
+  async searchProductAddCart(productName:string) {
+    //   await page.locator(".card-body b").first().waitFor();
+    const titles = await this.productsText.allTextContents();
+    console.log(titles);
+
+    const count = await this.products.count();
+    console.log(count);
+
+    for (let i = 0; i < count; i++) {
+      if (
+        (await this.products.nth(i).locator("b").textContent()) === productName
+      ) {
+        await this.products.nth(i).locator("text= Add To Cart").click();
+        break;
+      }
+    }
+  }
+
+  async navigateToCart() {
+    await this.cart.click();
+  }
+}
+
+module.exports = { DashboardPage };
