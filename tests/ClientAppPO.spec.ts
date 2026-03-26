@@ -13,11 +13,6 @@ for (const data of dataset) {
   test(`My first testcase ${data.productName}`, async ({ page }) => {
     const poManager = new POManager(page);
 
-    const productName = "ZARA COAT 3";
-    const userName = "SANCHITADHOLE27@GMAIL.COM";
-    const passWord = "Cgain@123";
-    const products = page.locator(".card-body");
-
     const loginpage = poManager.getLoginPage();
     await loginpage.goTo();
     await loginpage.validLogin(data.username, data.password);

@@ -27,6 +27,7 @@ class DashboardPage {
   }
 
   async navigateToCart() {
+     await this.page.locator('button[routerlink*="cart"]').waitFor();
     await this.cart.click();
   }
 }

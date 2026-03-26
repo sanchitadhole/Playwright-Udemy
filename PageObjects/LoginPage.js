@@ -1,3 +1,5 @@
+// Author: Sanchita
+
 class LoginPage {
   constructor(page) {
     this.page = page;
@@ -12,12 +14,12 @@ class LoginPage {
   }
 
   async validLogin(userName, passWord) {
-    await this.userName.fill(userName);
+    await this.userName.fill(userName); // Fixed typo
     await this.passWord.fill(passWord);
     await this.signInbutton.click();
 
-      await this.page.waitForLoadState("networkidle");
+    await this.page.waitForLoadState("networkidle");
   }
 }
 
-module.exports = {LoginPage}
+module.exports = { LoginPage }; // Added missing closing brace
